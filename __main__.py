@@ -3,14 +3,17 @@ from dotenv import load_dotenv
 from logs import logger
 from libs.bot import Bot
 
-load_dotenv ()
-VAR = os.getenv ("VAR")
+load_dotenv()
+CHROME_FOLDER = os.getenv("CHROME_FOLDER")
+CATEGORY = os.getenv("CATEGORY")
+FOLLOWERS = os.getenv("FOLLOWERS")
+CONTENT_TYPE = os.getenv("CONTENT_TYPE")
+CREATOR_AGENCY = os.getenv("CREATOR_AGENCY")
 
 if __name__ == '__main__':
     logger.info("Starting bot...")
-    chrome_folder = 'C:\\Users\\herna\\AppData\\Local\\Google\\Chrome\\User Data'
     bot = Bot(
-        chrome_folder
+        CHROME_FOLDER
     )
     
     # Login validation
@@ -19,6 +22,11 @@ if __name__ == '__main__':
         logger.error("Error: Login failed")
         quit()
         
-    bot.filter_creators()
+    bot.filter_creators(
+        CATEGORY,
+        FOLLOWERS,
+        CONTENT_TYPE,
+        CREATOR_AGENCY
+    )
     
     print("done")

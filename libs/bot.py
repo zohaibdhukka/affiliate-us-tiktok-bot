@@ -68,8 +68,15 @@ class Bot(WebScraping):
         
         return True
     
-    def filter_creators(self):
+    def filter_creators(self, category: str, followers: str,
+                        content_type: str, creator_agency: str):
         """ Apply filters to search creators
+        
+        Args:
+            category (str): category to filter
+            followers (str): followers range to filter (as text)
+            content_type (str): content type to filter
+            creator_agency (str): creator agency to filter
         """
         
         selectors = {
@@ -82,10 +89,10 @@ class Bot(WebScraping):
         
         self.click(selectors["creators_btn"])
         self.refresh_selenium()
-        self.__select_dropdown__(selectors["categories"], "Beauty & Personal Care")
-        self.__select_dropdown__(selectors["followers"], "10K-100K")
-        self.__select_dropdown__(selectors["content_type"], "All")
-        self.__select_dropdown__(selectors["creator_agency"], "All")
+        self.__select_dropdown__(selectors["categories"], category)
+        self.__select_dropdown__(selectors["followers"], followers)
+        self.__select_dropdown__(selectors["content_type"], content_type)
+        self.__select_dropdown__(selectors["creator_agency"], creator_agency)
     
     def save_creators(self):
         pass
