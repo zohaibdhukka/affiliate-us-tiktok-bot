@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.service import Service
+from subprocess import DEVNULL, STDOUT, check_call
 
 current_file = os.path.basename(__file__)
 
@@ -70,8 +71,8 @@ class WebScraping ():
 
         # Kill chrome from CMD in donwows
         if start_killing:
-            print("\nTry to kill chrome...")
-            command = 'taskkill /IM "chrome.exe" /F'
+            print("\nEndding current chrome tasks...")
+            command = 'taskkill /IM "chrome.exe" /F > nul 2>&1'
             os.system(command)
             print("Ok\n")
 
